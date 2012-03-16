@@ -10,3 +10,4 @@ Feature: Show the index page
   Scenario: Show a link to matteocollina.com
     When I visit the home page
     Then I should see a link to "http://matteocollina.com" titled "Matteo Collina"
+

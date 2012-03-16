@@ -33,6 +33,8 @@ GEM
     autotest (4.4.6)
       ZenTest (>= 4.4.1)
     autotest-growl (0.2.16)
+    bcrypt-ruby (3.0.1)
+    blankslate (2.1.2.4)
     builder (3.0.0)
     capybara (1.1.2)
       mime-types (>= 1.16)
@@ -77,11 +79,17 @@ GEM
       json (>= 1.4.6)
     hike (1.2.1)
     i18n (0.6.0)
+    jbuilder (0.3.2)
+      activesupport (>= 3.0.0)
+      blankslate (>= 2.1.2.4)
     journey (1.0.3)
     jquery-rails (2.0.1)
       railties (>= 3.2.0, < 5.0)
       thor (~> 0.14)
     json (1.6.5)
+    json_spec (1.0.0)
+      multi_json (~> 1.0)
+      rspec (~> 2.0)
     less (2.0.10)
       commonjs (~> 0.2.0)
       therubyracer (~> 0.9.9)
@@ -176,11 +184,14 @@ PLATFORMS
 DEPENDENCIES
   autotest
   autotest-growl
+  bcrypt-ruby (~> 3.0.0)
   coffee-rails (~> 3.2.1)
   cucumber-rails
   database_cleaner
   factory_girl_rails
+  jbuilder
   jquery-rails
+  json_spec
   rails (= 3.2.2)
   rspec-rails
   sass-rails (~> 3.2.3)

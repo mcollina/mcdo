@@ -57,3 +57,9 @@ end
 # See https://github.com/cucumber/cucumber-rails/blob/master/features/choose_javascript_database_strategy.feature
 Cucumber::Rails::Database.javascript_strategy = :truncation
 
+# Setup json_spec
+require "json_spec/cucumber"
+
+def last_json
+  page.source
+end
