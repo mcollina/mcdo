@@ -21,7 +21,7 @@ describe UsersController do
         response.location.should == user_url(User.first)
       end
 
-      it "should be a json" do
+      it "should return a json" do
         do_request
         response.content_type.should == "application/json"
       end
