@@ -25,6 +25,11 @@ describe UsersController do
         do_request
         response.content_type.should == "application/json"
       end
+
+      it "should add the user_id to the session" do
+        do_request
+        session[:user_id].should == User.first.id
+      end
     end
 
     describe "with invalid params" do

@@ -106,3 +106,22 @@ Feature: Signup API
       "errors": { "email": ["has already been taken"] }
     }
     """
+
+  Scenario: Login after signup
+    Given I call "/users.json" in POST with:
+    """
+    {
+      "user": {
+        "email": "hello@abc.org",
+        "password": "abcde",
+        "password_confirmation": "abcde"
+      }
+    }
+    """
+    When I call "/session.json" in GET
+    Then the JSON should be:
+    """
+    {
+      "status": "authenticated"
+    }
+    """
