@@ -16,9 +16,14 @@ describe SessionsController do
 
     describe "with right credentials" do
 
-      it "should be a redirect" do
+      it "should have contain a location header" do
         do_request
         response.location.should == session_path
+      end
+
+      it "should be succesful" do
+        do_request
+        response.should be_successful
       end
 
       it "should return a json" do
