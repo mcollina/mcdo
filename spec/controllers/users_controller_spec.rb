@@ -16,9 +16,14 @@ describe UsersController do
         expect{ do_request }.to change(User, :count).by(1)
       end
 
-      it "should be a redirect" do
+      it "should have contain a location header" do
         do_request
         response.location.should == user_url(User.first)
+      end
+
+      it "should be succesful" do
+        do_request
+        response.should be_successful
       end
 
       it "should return a json" do
