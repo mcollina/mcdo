@@ -5,13 +5,10 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.json { render json: @user, status: :created, location: @user }
+        format.json { render json: @user, status: :created }
       else
         format.json { render json: { errors: @user.errors }, status: :unprocessable_entity }
       end
     end
-  end
-
-  def show
   end
 end
