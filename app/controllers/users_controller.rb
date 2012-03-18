@@ -10,13 +10,10 @@ class UsersController < ApplicationController
         # so we can fetch it in a later call
         session[:user_id] = @user.id
 
-        format.json { render json: @user, status: :created, location: @user }
+        format.json { render json: @user, status: :created }
       else
         format.json { render json: { errors: @user.errors }, status: :unprocessable_entity }
       end
     end
-  end
-
-  def show
   end
 end

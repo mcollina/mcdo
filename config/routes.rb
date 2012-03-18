@@ -1,6 +1,6 @@
 Mcdo::Application.routes.draw do
 
-  resources :users, only: [:create, :show]
+  resources :users, only: [:create]
 
   resource :session, only: [:create, :show, :destroy]
 
