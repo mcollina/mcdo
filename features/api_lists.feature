@@ -92,14 +92,7 @@ Feature: Lists API
     """
 
   Scenario: Showing a list
-    When I call "/lists/1.json" in POST with:
-    """
-    {
-      "list": {
-        "name": "Personal"
-      }
-    }
-    """
+    When I call "/lists/1.json" in GET
     Then the JSON should be:
     """
     {
