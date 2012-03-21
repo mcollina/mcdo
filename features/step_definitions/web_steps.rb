@@ -12,14 +12,14 @@ When /^I call "([^"]*)"$/ do |path|
   step "I call \"#{path}\" in GET"
 end
 
-Then /^I should get status code (\d+)$/ do |arg1|
-  page.should have_content(text)
-end
-
 Then /^I should see a link to "([^"]*)" titled "([^"]*)"$/ do |url, text|
   page.should have_xpath("//a[text()='#{text}' and @href='#{url}']")
 end
 
 Then /^I should see "([^"]*)"$/ do |text|
   page.should have_content(text)
+end
+
+Then /^the status code should be (\d+)$/ do |code|
+  page.driver.status_code.should == code.to_i
 end

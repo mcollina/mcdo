@@ -1,11 +1,10 @@
-@wip
 Feature: Lists API
   As a MCDO developer
   In order to develop apps
   I want to manage a user's lists
 
   Background:
-    Given I login succesfully
+    Given I login succesfully with user "aaa@abc.org"
 
   Scenario: Default lists
     When I call "/lists.json" in GET
@@ -20,9 +19,14 @@ Feature: Lists API
     }
     """
 
+  Scenario: Not authenticated error if not logged in
+    Given I logout
+    When I call "/lists.json" in GET
+    Then the status code should be 403
+
   Scenario: Removing a list
     When I call "/lists/1.json" in DELETE
-    Then I should get status code 200
+    Then the status code should be 204
 
   Scenario: Removing a list (and the index is empty)
     Given I call "/lists/1.json" in DELETE
@@ -113,5 +117,21 @@ Feature: Lists API
     """
     {
       "name": "foobar"
+    }
+    """
+
+  Scenario: Removing a list and logging in with another user should show his lists
+    Given I call "/lists/1.json" in DELETE
+    And I logout
+    And I login succesfully with user "bbb@abc.org"
+    When I call "/lists.json"
+    Then the JSON should be:
+    """
+    {
+      "lists": [{
+        "id": 2,
+        "name": "Personal",
+        "link": "http://www.example.com/lists/2"
+      }]
     }
     """

@@ -46,4 +46,51 @@ describe User do
     subject.save!
     subject.as_json.should_not have_key("password_digest")
   end
+
+  it { should have_and_belong_to_many(:lists) }
+
+  it "should create a new list if after creation" do
+    expect {
+      subject.save!
+    }.to change(List, :count).by(1)
+  end
+
+  it "should not create a new list if it fails creation" do
+    expect {
+      FactoryGirl.build(:invalid_user).save
+    }.not_to change(List, :count)
+  end
+
+  it "should order the lists by reverse update_at" do
+    l1 = FactoryGirl.build(:list)
+    subject.lists << l1
+    subject.save!
+
+    Timecop.freeze(Time.now + 1.minute) do
+      l2 = FactoryGirl.build(:list)
+      subject.lists << l2
+      subject.save!
+
+      subject.reload
+      subject.lists.first.should == l2
+    end
+  end
+
+  it "should order the lists by reverse update_at (disambiguation)" do
+    l1 = FactoryGirl.build(:list)
+    subject.lists << l1
+    subject.save!
+
+    l2 = FactoryGirl.build(:list)
+    Timecop.freeze(Time.now + 1.minute) do
+      subject.lists << l2
+      subject.save!
+    end
+
+    Timecop.freeze(Time.now + 1.minute) do
+      l1.touch
+      subject.reload
+      subject.lists.first.should == l1
+    end
+  end
 end

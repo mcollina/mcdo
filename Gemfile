@@ -45,4 +45,6 @@ group :test do
   gem 'autotest-growl'
   gem 'factory_girl_rails'
   gem 'json_spec'
+  gem 'shoulda-matchers'
+  gem 'timecop'
 end

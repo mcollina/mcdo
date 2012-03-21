@@ -1,5 +1,7 @@
 class SessionsController < ApplicationController
 
+  before_filter :require_login, only: [:show, :destroy]
+
   def create
     @user = User.find_by_email(params[:email])
 
@@ -19,22 +21,14 @@ class SessionsController < ApplicationController
 
   def show
     respond_to do |format|
-      if user_authenticated?
-        format.json { render json: { status: "authenticated" } }
-      else
-        format.json { render json: { status: "not authenticated" }, status: :forbidden }
-      end
+      format.json { render json: { status: "authenticated" } }
     end
   end
 
   def destroy
     respond_to do |format|
-      if user_authenticated?
-        reset_session
-        format.json { render json: { status: "not authenticated" } }
-      else
-        format.json { render json: { status: "not authenticated" }, status: :forbidden }
-      end
+      reset_session
+      format.json { render json: { status: "not authenticated" } }
     end
   end
 end
