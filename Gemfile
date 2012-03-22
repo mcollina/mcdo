@@ -28,6 +28,10 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 # To use Jbuilder templates for JSON
 gem 'jbuilder'
 
+# we use ActiveAdmin to build the admin panel
+gem 'activeadmin'
+gem 'meta_search', '>= 1.1.0.pre'
+
 # Use unicorn as the app server
 # gem 'unicorn'
 
