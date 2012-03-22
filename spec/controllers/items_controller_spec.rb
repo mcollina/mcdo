@@ -215,4 +215,38 @@ describe ItemsController do
       end
     end
   end
+
+  describe "PUT move" do
+
+    def do_request(new_position = 42, id=item.id, list_id=list.id)
+      put :move, format: :json, id: id, list_id: list_id, position: new_position
+    end
+
+    describe "with valid params" do
+
+      let(:item) { list.items.first }
+
+      it "should call the move method on the list" do
+        list = double("list")
+        list.should_receive(:move).with(item_id: item.id.to_s, position: 2.to_s)
+        User.stub_chain(:find, :lists, :find).and_return(list)
+        do_request 2
+      end
+
+      it "should be successful" do
+        do_request
+        response.should be_successful
+      end
+
+      it "should return a json" do
+        do_request
+        response.content_type.should == "application/json"
+      end
+
+      it "should show render the index template" do
+        do_request
+        response.should render_template("index")
+      end
+    end
+  end
 end

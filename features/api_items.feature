@@ -12,7 +12,8 @@ Feature: Manage a list's items
     """
     {
       "items": [{
-        "name": "Insert your items!"
+        "name": "Insert your items!",
+        "position": 0
       }],
       "list_link": "http://www.example.com/lists/1"
     }
@@ -51,7 +52,8 @@ Feature: Manage a list's items
     """
     {
       "name": "foobar",
-      "list_link": "http://www.example.com/lists/1"
+      "list_link": "http://www.example.com/lists/1",
+      "position": 1
     }
     """
 
@@ -85,9 +87,11 @@ Feature: Manage a list's items
     """
     {
       "items": [{
-        "name": "Insert your items!"
+        "name": "Insert your items!",
+        "position": 0
       }, {
-        "name": "foobar"
+        "name": "foobar",
+        "position": 1
       }],
       "list_link": "http://www.example.com/lists/1"
     }
@@ -99,7 +103,8 @@ Feature: Manage a list's items
     """
     {
       "name": "Insert your items!",
-      "list_link": "http://www.example.com/lists/1"
+      "list_link": "http://www.example.com/lists/1",
+      "position": 0
     }
     """
 
@@ -116,6 +121,127 @@ Feature: Manage a list's items
     """
     {
       "name": "foobar",
+      "list_link": "http://www.example.com/lists/1",
+      "position": 0
+    }
+    """
+
+  Scenario: Moving an element to the top
+    Given I call "/lists/1/items.json" in POST with:
+    """
+    {
+      "item": {
+        "name": "b"
+      }
+    }
+    """
+    And I call "/lists/1/items.json" in POST with:
+    """
+    {
+      "item": {
+        "name": "c"
+      }
+    }
+    """
+    When I call "/lists/1/items/2/move.json" in PUT with:
+    """
+    {
+      "position": 0
+    }
+    """
+    Then the JSON should be:
+    """
+    {
+      "items": [{
+        "name": "b",
+        "position": 0
+      }, {
+        "name": "Insert your items!",
+        "position": 1
+      }, {
+        "name": "c",
+        "position": 2
+      }],
+      "list_link": "http://www.example.com/lists/1"
+    }
+    """
+
+  Scenario: Moving an element to the middle
+    Given I call "/lists/1/items.json" in POST with:
+    """
+    {
+      "item": {
+        "name": "b"
+      }
+    }
+    """
+    And I call "/lists/1/items.json" in POST with:
+    """
+    {
+      "item": {
+        "name": "c"
+      }
+    }
+    """
+    When I call "/lists/1/items/3/move.json" in PUT with:
+    """
+    {
+      "position": 1
+    }
+    """
+    Then the JSON should be:
+    """
+    {
+      "items": [{
+        "name": "Insert your items!",
+        "position": 0
+      }, {
+        "name": "c",
+        "position": 1
+      }, {
+        "name": "b",
+        "position": 2
+      }],
+      "list_link": "http://www.example.com/lists/1"
+    }
+    """
+
+  Scenario: Moving an element to the end
+    Given I call "/lists/1/items.json" in POST with:
+    """
+    {
+      "item": {
+        "name": "b"
+      }
+    }
+    """
+    And I call "/lists/1/items.json" in POST with:
+    """
+    {
+      "item": {
+        "name": "c"
+      }
+    }
+    """
+    When I call "/lists/1/items/1/move.json" in PUT with:
+    """
+    {
+      "position": 2
+    }
+    """
+    Then the JSON should be:
+    """
+    {
+      "items": [{
+        "name": "b",
+        "position": 0
+      }, {
+        "name": "c",
+        "position": 1
+      }, {
+        "name": "Insert your items!",
+        "position": 2
+      }],
       "list_link": "http://www.example.com/lists/1"
     }
     """

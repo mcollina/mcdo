@@ -36,6 +36,11 @@ class ItemsController < ApplicationController
     end
   end
 
+  def move
+    @list.move(item_id: params[:id], position: params[:position])
+    render :index
+  end
+
   private
     def fetch_current_item
       @item ||= fetch_current_list.items.find(params[:id])

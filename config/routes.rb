@@ -3,7 +3,11 @@ Mcdo::Application.routes.draw do
   resources :users, only: [:create]
 
   resources :lists do
-    resources :items
+    resources :items do
+      member do
+        put 'move'
+      end
+    end
   end
 
   resource :session, only: [:create, :show, :destroy]

@@ -43,4 +43,13 @@ describe ItemsController do
       list_id: "1"
     )
   end
+
+  it "routes put /lists/1/items/42/move to items#move" do
+    { put: "/lists/1/items/42/move" }.should route_to(
+      controller: "items",
+      action: "move",
+      id: "42",
+      list_id: "1"
+    )
+  end
 end
