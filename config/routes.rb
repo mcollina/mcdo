@@ -2,7 +2,9 @@ Mcdo::Application.routes.draw do
 
   resources :users, only: [:create]
 
-  resources :lists
+  resources :lists do
+    resources :items
+  end
 
   resource :session, only: [:create, :show, :destroy]
 

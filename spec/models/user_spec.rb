@@ -49,7 +49,7 @@ describe User do
 
   it { should have_and_belong_to_many(:lists) }
 
-  it "should create a new list if after creation" do
+  it "should create a new list after creation" do
     expect {
       subject.save!
     }.to change(List, :count).by(1)

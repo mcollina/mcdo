@@ -14,7 +14,8 @@ Feature: Lists API
       "lists": [{
         "id": 1,
         "name": "Personal",
-        "link": "http://www.example.com/lists/1"
+        "link": "http://www.example.com/lists/1",
+        "items_link": "http://www.example.com/lists/1/items"
       }]
     }
     """
@@ -50,7 +51,8 @@ Feature: Lists API
     Then the JSON should be:
     """
     {
-      "name": "foobar"
+      "name": "foobar",
+      "items_link": "http://www.example.com/lists/2/items"
     }
     """
 
@@ -86,11 +88,13 @@ Feature: Lists API
       "lists": [{
         "id": 2,
         "name": "foobar",
-        "link": "http://www.example.com/lists/2"
+        "link": "http://www.example.com/lists/2",
+        "items_link": "http://www.example.com/lists/2/items"
       }, {
         "id": 1,
         "name": "Personal",
-        "link": "http://www.example.com/lists/1"
+        "link": "http://www.example.com/lists/1",
+        "items_link": "http://www.example.com/lists/1/items"
       }]
     }
     """
@@ -100,7 +104,8 @@ Feature: Lists API
     Then the JSON should be:
     """
     {
-      "name": "Personal"
+      "name": "Personal",
+      "items_link": "http://www.example.com/lists/1/items"
     }
     """
 
@@ -116,7 +121,8 @@ Feature: Lists API
     Then the JSON should be:
     """
     {
-      "name": "foobar"
+      "name": "foobar",
+      "items_link": "http://www.example.com/lists/1/items"
     }
     """
 
@@ -131,7 +137,8 @@ Feature: Lists API
       "lists": [{
         "id": 2,
         "name": "Personal",
-        "link": "http://www.example.com/lists/2"
+        "link": "http://www.example.com/lists/2",
+        "items_link": "http://www.example.com/lists/2/items"
       }]
     }
     """

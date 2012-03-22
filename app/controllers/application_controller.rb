@@ -19,4 +19,8 @@ class ApplicationController < ActionController::Base
 
       return false # so we do no proceeed
     end
+
+    def fetch_current_list
+      @list ||= current_user.lists.find(params[:list_id] || params[:id])
+    end
 end

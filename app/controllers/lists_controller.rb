@@ -10,7 +10,7 @@ class ListsController < ApplicationController
 
     respond_to do |format|
       if @list.save
-        format.json { render json: @list, status: :created, location: list_path(@list) }
+        format.json { render :show, status: :created, location: list_path(@list) }
       else
         format.json { render json: { errors: @list.errors }, status: :unprocessable_entity }
       end
@@ -38,9 +38,4 @@ class ListsController < ApplicationController
       end
     end
   end
-
-  private
-    def fetch_current_list
-      @list ||= current_user.lists.find(params[:id])
-    end
 end

@@ -10,6 +10,8 @@ describe ListsController do
 
   describe "POST create" do
 
+    render_views
+
     def do_request
       post :create, { format: :json, list: list}
     end
@@ -32,14 +34,19 @@ describe ListsController do
         response.content_type.should == "application/json"
       end
 
-      it "should show the list's JSON" do
-        do_request
-        response.body.should be_json_eql(List.order("created_at DESC").first.to_json)
-      end
-
       it "should attach the list to the current user" do
         do_request
         List.first.users.should include(user)
+      end
+
+      it "should show the list name in the json" do
+        do_request
+        response.body.should be_json_eql(list[:name].to_json).at_path("name")
+      end
+
+      it "should show the a link to the list's item in the json" do
+        do_request
+        response.body.should be_json_eql(list_items_path(List.order("created_at DESC").first, only_path: false).to_json).at_path("items_link")
       end
     end
 
@@ -77,7 +84,7 @@ describe ListsController do
     it "should render the user's list" do
       do_request
       json_lists = user.lists.inject([]) do |acc, list| 
-        acc << list.as_json.merge(link: list_path(list, only_path: false))
+        acc << list.as_json.merge(link: list_path(list, only_path: false), items_link: list_items_path(list, only_path: false))
         acc
       end
       response.body.should be_json_eql(json_lists.to_json).at_path("lists")
@@ -207,6 +214,11 @@ describe ListsController do
       it "should show the list name in the json" do
         do_request
         response.body.should be_json_eql(list.name.to_json).at_path("name")
+      end
+
+      it "should show the a link to the list's item in the json" do
+        do_request
+        response.body.should be_json_eql(list_items_path(list, only_path: false).to_json).at_path("items_link")
       end
     end
   end
