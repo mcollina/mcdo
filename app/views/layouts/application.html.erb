@@ -25,7 +25,7 @@
     <link href="/assets/images/apple-touch-icon-114x114.png" rel="apple-touch-icon" sizes="114x114">
   </head>
   <body>
-
+    <div class="wrapper">
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
           <div class="container-fluid">
@@ -49,6 +49,7 @@
     </div>
 
     <div class="container-fluid">
+      <!--
       <div class="row-fluid">
         <div class="span3">
           <div class="well sidebar-nav">
@@ -58,18 +59,20 @@
                 <li><%= link_to "Link2", "/path2"  %></li>
                 <li><%= link_to "Link3", "/path3"  %></li>
             </ul>
-          </div><!--/.well -->
-        </div><!--/span-->
-        <div class="span9">
-          <%= yield %>
+          </div>
         </div>
-      </div><!--/row-->
-
-      <footer>
-        <p>&copy; <%= link_to "Matteo Collina", "http://matteocollina.com" %> 2012</p>
-      </footer>
+        <div class="span9">
+        </div>
+        -->
+        <%= yield %>
+      </div>
 
     </div> <!-- /container -->
+
+    <footer>
+    <p>&copy; <%= link_to "Matteo Collina", "http://matteocollina.com" %> 2012</p>
+    </footer>
+
 
     <!-- Le javascript
     ================================================== -->
