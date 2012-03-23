@@ -17,3 +17,8 @@ opts =
 
 target = document.getElementById('startup-spinner')
 new Spinner(opts).spin(target)
+
+$(document).ready ->
+  setTimeout(->
+    $('#signup').modal('show')
+  , 500)
