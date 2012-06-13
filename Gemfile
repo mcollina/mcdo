@@ -1,11 +1,10 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.2'
+gem 'rails', '3.2.6'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -40,6 +39,10 @@ gem 'meta_search', '>= 1.1.0.pre'
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
+
+group :development do
+  gem 'sqlite3'
+end
 
 group :test do
   gem 'cucumber-rails', :require => false

@@ -228,7 +228,7 @@ describe ItemsController do
 
       it "should call the move method on the list" do
         list = double("list")
-        list.should_receive(:move).with(item_id: item.id.to_s, position: 2.to_s)
+        list.should_receive(:move).with(item_id: item.id.to_s, position: 2)
         User.stub_chain(:find, :lists, :find).and_return(list)
         do_request 2
       end
