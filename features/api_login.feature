@@ -1,3 +1,4 @@
+@login
 Feature: Login API
   As a MCDO developer
   In order to develop apps

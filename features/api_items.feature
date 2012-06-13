@@ -1,3 +1,4 @@
+@items
 Feature: Manage a list's items
   As a developer
   In order to manipulate the list's item

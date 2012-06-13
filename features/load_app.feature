@@ -1,3 +1,4 @@
+@load_app
 Feature: Show the index page
   As a MCDO prospect
   In order to discover the service
@@ -10,4 +11,3 @@ Feature: Show the index page
   Scenario: Show a link to matteocollina.com
     When I visit the home page
     Then I should see a link to "http://matteocollina.com" titled "Matteo Collina"
-
