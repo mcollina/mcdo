@@ -10,15 +10,10 @@ opts =
   trail: 60, # Afterglow percentage
   shadow: false, # Whether to render a shadow
   hwaccel: false, # Whether to use hardware acceleration
-  className: 'startup-spinner', # The CSS class to assign to the spinner
-  zIndex: 2e9, # The z-index (defaults to 2000000000)
-  top: 'auto', # Top position relative to parent in px
-  left: 'auto' # Left position relative to parent in px
-
-target = document.getElementById('startup-spinner')
-new Spinner(opts).spin(target)
+  zIndex: 0, # The z-index (defaults to 2000000000)
+  top: '0px', # Top position relative to parent in px
+  left: '0px' # Left position relative to parent in px
 
 $(document).ready ->
-  setTimeout(->
-    $('#signup').modal('show')
-  , 500)
+  $('#startup-spinner').each (index, target) ->
+    new Spinner(opts).spin(target)

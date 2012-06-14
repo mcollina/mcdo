@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>MCDO - Making todo list easy again!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%= csrf_meta_tags %>
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
@@ -11,11 +12,6 @@
     <![endif]-->
 
     <!-- Le styles -->
-    <style>
-      body {
-        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
-      }
-    </style>
     <%= stylesheet_link_tag "application", :media => "all" %>
 
     <!-- Le fav and touch icons -->
@@ -23,6 +19,7 @@
     <link href="/assets/images/apple-touch-icon.png" rel="apple-touch-icon">
     <link href="/assets/images/apple-touch-icon-72x72.png" rel="apple-touch-icon" sizes="72x72">
     <link href="/assets/images/apple-touch-icon-114x114.png" rel="apple-touch-icon" sizes="114x114">
+
   </head>
   <body>
     <div class="wrapper">
@@ -43,36 +40,30 @@
                 <li><%= link_to "Link3", "/path3"  %></li>
               -->
             </ul>
+            <ul class="nav pull-right">
+              <li class="hide logout"></li>
+              <!--
+                <li><%= link_to "Link1", "/path1"  %></li>
+                <li><%= link_to "Link2", "/path2"  %></li>
+                <li><%= link_to "Link3", "/path3"  %></li>
+              -->
+            </ul>
           </div><!--/.nav-collapse -->
         </div>
       </div>
     </div>
 
     <div class="container-fluid">
-      <!--
-      <div class="row-fluid">
-        <div class="span3">
-          <div class="well sidebar-nav">
-            <ul class="nav nav-list">
-              <li class="nav-header">Sidebar</li>
-                <li><%= link_to "Link1", "/path1"  %></li>
-                <li><%= link_to "Link2", "/path2"  %></li>
-                <li><%= link_to "Link3", "/path3"  %></li>
-            </ul>
-          </div>
-        </div>
-        <div class="span9">
-        </div>
-        -->
-        <%= yield %>
-      </div>
+      <%= yield %>
+    </div>
 
-    </div> <!-- /container -->
-
+    </div>
     <footer>
     <p>&copy; <%= link_to "Matteo Collina", "http://matteocollina.com" %> 2012</p>
     </footer>
 
+    <div class="modal hide fade in" id="signup">
+    </div>
 
     <!-- Le javascript
     ================================================== -->

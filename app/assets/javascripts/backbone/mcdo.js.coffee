@@ -4,8 +4,16 @@
 #= require_tree ./views
 #= require_tree ./routers
 
-window.Mcdo =
+window.MCDO = MCDO =
   Models: {}
   Collections: {}
   Routers: {}
   Views: {}
+  Templates: {}
+
+$(window).ready ->
+  MCDO.login = new MCDO.Models.LoginStatus()
+  new MCDO.Views.LoginSignup(model: MCDO.login, el: $("#signup"))
+  new MCDO.Views.Logout(model: MCDO.login, el: $(".logout"))
+
+  MCDO.login.verify()
